@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/psola/progra2/CorrectorOffline.jar"/>
 	<classpathentry kind="lib" path="C:/Users/psola/progra2/Fecha.jar"/>
 	<classpathentry kind="lib" path="C:/Users/psola/progra2/tads1920.jar"/>
+	<classpathentry kind="lib" path="C:/Users/psola/progra2/libSmartParking.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
