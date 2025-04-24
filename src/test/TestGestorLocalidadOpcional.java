@@ -58,10 +58,12 @@ public class TestGestorLocalidadOpcional {
 					LocalDateTime tI = LocalDateTime.of(2021, 10, 5, 0, 0);
 					LocalDateTime tF = LocalDateTime.of(2021, 10, 5, 2, 30);
 					hueco = gestor.reservarHueco(tI, tF);
+					System.out.println("Hueco reservado: " + hueco.toString());
 
 					LocalDateTime tI1 = LocalDateTime.of(2021, 10, 5, 2, 30);
 					LocalDateTime tF1 = LocalDateTime.of(2021, 10, 5, 3, 0);
 					gestor.reservarHueco(tI1, tF1);
+					System.out.println("Hueco reservado: " + hueco.toString());
 				}
 				// se crea la lista de espera para la zona i, j
 				aplazarSolicitud(gestor, i, j, 0, 30, 2, 0, "car1");
@@ -71,6 +73,7 @@ public class TestGestorLocalidadOpcional {
 				
 				// se libera un hueco en una plaza de la zona i, j
 				gestor.liberarHueco(hueco);
+				System.out.println("Hueco liberado: " + hueco.toString() );
 				assertEquals("No se han devuelto las solicitudes atendidas correctas para la zona " 
 						+ i + " " + j, "[(Sol:"+ i + " " + j + " 00:30 02:00 car1),\n"
 								+ "(Sol:"+ i + " " + j + " 00:00 00:15 car4)]", gestorLocalidad.getSolicitudesAtendidasListaEspera(i, j).toString());

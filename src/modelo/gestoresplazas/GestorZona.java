@@ -111,14 +111,17 @@ public class GestorZona {
 						gestorHuecos.reservarHueco(listaEspera.get(i).getTInicial(), listaEspera.get(i).getTFinal()));
 				res.add(res.size(), listaEspera.get(i));
 				listaEspera.remove(listaEspera.get(i));
+				System.out.println("a-- " + i +  " -- " + res.toString());
 				i--;
-				System.out.println("a-- " + res.toString());
+			}else {
+				System.out.println("b-- " + i +  " -- " + res.toString());
 			}
 		}
 		int huecosALiberarSize = huecosALiberar.size();
 		for(int i = 0; i < huecosALiberarSize; i++) {
 			gestorHuecos.liberarHueco(huecosALiberar.get(0));
-			huecosALiberar.removeElementAt(0);		}
+			huecosALiberar.removeElementAt(0);		
+			}
 		
 		return res;
 	}

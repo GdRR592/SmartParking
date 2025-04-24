@@ -21,8 +21,8 @@ import modelo.vehiculos.Vehiculo;
 
 public class TestSolicitudReservaInmediataOpcional {
 
-	@Rule //Se establece un time out general para todos los tests. Se debe comentar esta línea y la de abajo para depurar
-	public TestRule  globalTimeout = new DisableOnDebug(Timeout.millis(100)); // 100 milisegundos máximos por test	
+	//@Rule //Se establece un time out general para todos los tests. Se debe comentar esta línea y la de abajo para depurar
+	//public TestRule  globalTimeout = new DisableOnDebug(Timeout.millis(100)); // 100 milisegundos máximos por test	
 
 
 	private int[][] plazas = 
