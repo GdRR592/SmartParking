@@ -29,7 +29,7 @@ public class SolicitudReservaInmediata extends SolicitudReserva{
 	public void gestionarSolicitudReserva(GestorLocalidad gestor){
 		
 		System.out.println("Entrando en gestionarSolicitudReserva");
-		double precio;						//Almacena el mejor precio dentro de un radio y se actualiza cada vez que encuenta otro mejor
+		double precio = -1;						//Almacena el mejor precio dentro de un radio y se actualiza cada vez que encuenta otro mejor
 		int[] candidato = {-1, -1};			//Almacena las coordenadas de la plaza (x, y) candidata a ser elegida (por precio) en un mismo radio
 		
 		super.gestionarSolicitudReserva(gestor);
@@ -51,12 +51,13 @@ public class SolicitudReservaInmediata extends SolicitudReserva{
 					y = j + n;				//modifica las coordenadas x e y
 					
 					System.out.println("     Casilla: " + x + ", " + y);
+					System.out.println("AMARILLO: " + gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()));
 					
 					if(!(x<0) && !(y<0)) {			//comprueba que exista la zona y si el precio es mejor que el anterior mejor precio, establece la nueva plaza como candidata
 						System.out.println("Existe la Casilla: " + x + ", " + y + "Existe hueco: " + gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()));
 						if(gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()) 		//Si en una plaza (x, y) hay un hueco y tiene mejor precio que la anterior la elige
 								&& (gestor.getGestorZona(i, j).getPrecio() < precio
-								|| precio == -1)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
+								|| precio == -1.0)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
 							candidato[0] = x;
 							candidato[1] = y;
 							precio = gestor.getGestorZona(i, j).getPrecio();
@@ -76,7 +77,7 @@ public class SolicitudReservaInmediata extends SolicitudReserva{
 						System.out.println("Existe la Casilla: " + x + ", " + y + "Existe hueco: " + gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()));
 						if(gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()) 		//Si en una plaza (x, y) hay un hueco y tiene mejor precio que la anterior la elige
 								&& (gestor.getGestorZona(i, j).getPrecio() < precio
-										|| precio == -1)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
+										|| precio == -1.0)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
 							candidato[0] = x;
 							candidato[1] = y;
 							precio = gestor.getGestorZona(i, j).getPrecio();
@@ -96,7 +97,7 @@ public class SolicitudReservaInmediata extends SolicitudReserva{
 						System.out.println("Existe la Casilla: " + x + ", " + y + "Existe hueco: " + gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()));
 						if(gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()) 		//Si en una plaza (x, y) hay un hueco y tiene mejor precio que la anterior la elige
 								&& (gestor.getGestorZona(i, j).getPrecio() < precio
-										|| precio == -1)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
+										|| precio == -1.0)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
 							candidato[0] = x;
 							candidato[1] = y;
 							precio = gestor.getGestorZona(i, j).getPrecio();
@@ -113,10 +114,10 @@ public class SolicitudReservaInmediata extends SolicitudReserva{
 					System.out.println("     Casilla: " + x + ", " + y);
 					
 					if(!(x<0) && !(y<0)) {			//comprueba que exista la zona y si el precio es mejor que el anterior mejor precio, establece la nueva plaza como candidata
-						System.out.println("Existe la Casilla: " + x + ", " + y);
+						System.out.println("Existe la Casilla: " + x + ", " + y + "Existe hueco: " + gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()));
 						if(gestor.getGestorZona(i, j).existeHueco(getTInicial(), getTFinal()) 		//Si en una plaza (x, y) hay un hueco y tiene mejor precio que la anterior la elige
 								&& (gestor.getGestorZona(i, j).getPrecio() < precio
-										|| precio == -1)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
+										|| precio == -1.0)) {				//este OR es necesario, ya que si es la primera plaza libre, no habría un mejor precio previo
 							candidato[0] = x;
 							candidato[1] = y;
 							precio = gestor.getGestorZona(i, j).getPrecio();

@@ -105,22 +105,20 @@ public class GestorZona {
 	public IList<SolicitudReservaAnticipada> getSolicitudesAtendidasListaEspera() {
 		IList<SolicitudReservaAnticipada> res = new ArrayList<SolicitudReservaAnticipada>();
 		IList<Hueco> huecosALiberar = new ArrayList<Hueco>();
-		for(int i = 0; i < listaEspera.size(); i++) {
-			if(gestorHuecos.existeHueco(listaEspera.get(i).getTInicial(), listaEspera.get(i).getTFinal())) {				
+		for(int i = listaEspera.size() - 1; i > 0; i--) {
+			if(gestorHuecos.existeHueco(listaEspera.get(i).getTInicial(), listaEspera.get(i).getTFinal())) {
 				huecosALiberar.add(huecosALiberar.size(), 
 						gestorHuecos.reservarHueco(listaEspera.get(i).getTInicial(), listaEspera.get(i).getTFinal()));
-				res.add(res.size(), listaEspera.get(i));
+				res.add(0, listaEspera.get(i));
 				listaEspera.remove(listaEspera.get(i));
 				System.out.println("a-- " + i +  " -- " + res.toString());
-				i--;
 			}else {
 				System.out.println("b-- " + i +  " -- " + res.toString());
 			}
 		}
 		int huecosALiberarSize = huecosALiberar.size();
 		for(int i = 0; i < huecosALiberarSize; i++) {
-			gestorHuecos.liberarHueco(huecosALiberar.get(0));
-			huecosALiberar.removeElementAt(0);		
+			gestorHuecos.liberarHueco(huecosALiberar.get(i));
 			}
 		
 		return res;

@@ -178,7 +178,7 @@ public class TestSolicitudReservaInmediataOpcional {
 	
 	private void comprobarGestionarReservaCompletada() {
 		GestorLocalidad gestorLocalidad = new GestorLocalidad(plazas, precios);
-
+		System.out.println("caca");
 		LocalDateTime tI = LocalDateTime.of(2021, 10, 5, 1, 0);
 		LocalDateTime tF = LocalDateTime.of(2021, 10, 5, 2, 30);
 		Vehiculo car = new Vehiculo("7883CTB");
@@ -191,7 +191,10 @@ public class TestSolicitudReservaInmediataOpcional {
 					new SolicitudReservaInmediata(0, 1, tI, tF, car, 2);
 			solicitud.gestionarSolicitudReserva(gestorLocalidad);
 			
+			System.out.println("----------------------------------------");
+			System.out.println("Expected: (" + pathI[i] + ", " + pathJ[i] + "). Result: (" + solicitud.getGestorZona().getI() + ", " + solicitud.getGestorZona().getJ() + "). HuecoLibre? " + gestorLocalidad.getGestorZona(pathI[i], pathJ[i]).existeHueco(tI, tF));
 			comprobarSolicitud(pathI[i], pathJ[i], solicitud, gestorLocalidad);
+			
 		}
 	}
 	
