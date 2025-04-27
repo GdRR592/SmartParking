@@ -50,6 +50,7 @@ public class TestGestorLocalidadOpcional {
 	public void testGetSolicitudesAtendidasListaEspera() {
 		for (int i=0; i<plazas.length; i++)
 			for (int j=0; j<plazas[0].length; j++) {
+				System.out.println(".-----------------------NUEVA ITERACION------------------------.");
 				Hueco hueco = null;
 				GestorZona gestor = null;
 				// se reserva todo el tiempo en todas las plazas de la zona i, j
