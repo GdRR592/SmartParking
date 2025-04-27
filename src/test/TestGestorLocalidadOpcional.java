@@ -57,6 +57,7 @@ public class TestGestorLocalidadOpcional {
 				// se reserva todo el tiempo en todas las plazas de la zona i, j
 				for (int k=0; k<plazas[i][j]; k++) {
 					gestor = gestorLocalidad.getGestorZona(i, j);
+					System.out.println("n plazas " + gestor.getPlazas());
 					LocalDateTime tI = LocalDateTime.of(2021, 10, 5, 0, 0);
 					LocalDateTime tF = LocalDateTime.of(2021, 10, 5, 2, 30);
 					hueco = gestor.reservarHueco(tI, tF);
