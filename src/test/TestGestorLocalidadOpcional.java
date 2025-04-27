@@ -52,6 +52,7 @@ public class TestGestorLocalidadOpcional {
 			for (int j=0; j<plazas[0].length; j++) {
 				System.out.println(".-----------------------NUEVA ITERACION------------------------.");
 				Hueco hueco = null;
+				Hueco hueco2 = null;
 				GestorZona gestor = null;
 				// se reserva todo el tiempo en todas las plazas de la zona i, j
 				for (int k=0; k<plazas[i][j]; k++) {
@@ -60,11 +61,17 @@ public class TestGestorLocalidadOpcional {
 					LocalDateTime tF = LocalDateTime.of(2021, 10, 5, 2, 30);
 					hueco = gestor.reservarHueco(tI, tF);
 					System.out.println("Hueco reservado: " + hueco.toString());
-
+					
+					 
 					LocalDateTime tI1 = LocalDateTime.of(2021, 10, 5, 2, 30);
 					LocalDateTime tF1 = LocalDateTime.of(2021, 10, 5, 3, 0);
-					gestor.reservarHueco(tI1, tF1);
+					hueco2 = gestor.reservarHueco(tI1, tF1);
 					System.out.println("Hueco reservado: " + hueco.toString());
+					if(hueco2 == null) {
+						System.out.println("RIP hueco2");
+					}else {
+						System.out.println("Hueco reservado 2: " + hueco2.toString());
+					}
 				}
 				// se crea la lista de espera para la zona i, j
 				aplazarSolicitud(gestor, i, j, 0, 30, 2, 0, "car1");

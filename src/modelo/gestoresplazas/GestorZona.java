@@ -116,7 +116,8 @@ public class GestorZona {
 			}else {
 				i++;
 			}
-		}
+			System.out.println("res n " + i + ":" + res);
+		} 
 		int huecosALiberarSize = huecosALiberar.size();
 		for(i = 0; i < huecosALiberarSize; i++) {
 			System.out.println("libero: " + huecosALiberar.get(i).toString());

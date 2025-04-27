@@ -3,12 +3,14 @@ package controladores;
 import controladores.excepciones.PlazaOcupada;
 import controladores.excepciones.ReservaInvalida;
 import controladores.excepciones.SolicitudReservaInvalida;
+import list.ArrayList;
 import list.IList;
 import modelo.gestoresplazas.GestorLocalidad;
 import modelo.reservas.EstadoValidez;
 import modelo.reservas.Reserva;
 import modelo.reservas.Reservas;
 import modelo.reservas.solicitudesreservas.SolicitudReserva;
+import modelo.reservas.solicitudesreservas.SolicitudReservaAnticipada;
 import modelo.vehiculos.Vehiculo;
 import anotacion.Programacion2;
 
@@ -95,15 +97,17 @@ public class ControladorReservas {
 		if (!this.esValidaReserva(i, j, numPlaza, numReserva, vehiculo.getMatricula())){
 			throw new ReservaInvalida("La reserva no ha sido validada aún.");
 		}
-		if (this.registroReservas.obtenerReserva(numReserva).getHueco() != null) {
+		Reserva reserva = this.registroReservas.obtenerReserva(numReserva);
+		if (reserva.getHueco().getPlaza().getVehiculo() != null) {
 			throw new PlazaOcupada ("La plaza ya está ocupada.");
 		}
-		this.registroReservas.obtenerReserva(numReserva).validar(i, j, numPlaza, vehiculo.getMatricula(), gestorLocalidad);
+		reserva.validar(i, j, numPlaza, vehiculo.getMatricula(), gestorLocalidad);
+		reserva.getHueco().getPlaza().setVehiculo(vehiculo);
 	}
 
 
 	//TO-DO alumno opcional
-	
+
 	//Libera el hueco en una reserva
 	private void liberarHuecoReservado(int numReserva) {
 		this.registroReservas.obtenerReserva(numReserva).liberarHuecoReservado();
@@ -129,8 +133,24 @@ public class ControladorReservas {
 
 
 	// PRE (no es necesario comprobar): todas las solicitudes atendidas son válidas.
-	public IList<Integer> getReservasRegistradasDesdeListaEspera(int i, int j){
-		//TO-DO
-		return null;
+	public IList<Integer> getReservasRegistradasDesdeListaEspera(int i, int j) {
+		IList<SolicitudReservaAnticipada> reservasRegistradasDesdeListaEspera = 
+				this.gestorLocalidad.getSolicitudesAtendidasListaEspera(i, j);
+		IList<Integer> reservasRegistradasDesdeListaEsperaNumReserva = new ArrayList<>();
+		for (int k = 0; k < reservasRegistradasDesdeListaEspera.size(); k++) {
+			SolicitudReservaAnticipada solicitud = reservasRegistradasDesdeListaEspera.get(k);
+
+			System.out.println(solicitud + "0\n\n");
+
+			reservasRegistradasDesdeListaEsperaNumReserva.add
+			(reservasRegistradasDesdeListaEsperaNumReserva.size(),
+					this.registroReservas.registrarReserva(solicitud));
+
+			System.out.println(solicitud + "1\n\n");
+			System.out.println(solicitud.getHueco() + "2\n\n");
+		}
+		return reservasRegistradasDesdeListaEsperaNumReserva;
 	}
+	//No sé si el failure se debe a un error en esta función o en la clase GestorZona
+	//Creo que no se está inicializando el hueco de la solicitud, pero no sé por qué
 } 
